@@ -1,0 +1,248 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+:root {
+  font-family: poppins, sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  /* colors */
+  --bg: #000;
+  --text: #fff;
+  --border-color: #200648;
+  --border-hover: #430c94;
+  --btn-color: #b486f8;
+  --shadow1: #160122;
+  --shadow2: #0c0015;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  background-color: var(--bg);
+  color: var(--text);
+  min-width: 320px;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+#root {
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+@media (max-width: 480px) {
+  #root {
+    padding-top: 0;
+  }
+}
+.App {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1rem;
+}
+@media (min-width: 480px) {
+  .App {
+    gap: 2rem;
+  }
+}
+
+button {
+  font-size: large;
+  margin-left: 10px;
+  padding: 7px;
+  outline: none;
+  border: none;
+  border: 1px solid var(--border-color);
+  background: none;
+  color: #e1c78f;
+  border-radius: 10px;
+  transition: 0.4s;
+  box-shadow: -4px -4px 7px var(--shadow1), 4px 4px 7px var(--shadow2);
+  cursor: pointer;
+}
+button:active {
+  scale: 0.9;
+}
+button:hover {
+  border: 1px solid #e1c78f;
+}
+
+::-webkit-scrollbar {
+  background: #3a4d39;
+}
+
+.todolist {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.addTask {
+  max-width: 1000px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.addTask input {
+  flex: 1;
+  outline: none;
+  padding: 0.8rem 0.6rem;
+  border: 1px solid #e1c78f;
+  background: none;
+  border-radius: 10px;
+  font-size: 16px;
+  letter-spacing: 0.3ch;
+  box-shadow: -4px -4px 6px var(--shadow1), 4px 4px 10px var(--shadow2);
+  transition: border 0.4s ease;
+}
+
+.lists {
+  margin-top: 1rem;
+  max-width: 1000px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  max-height: 650px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  padding: 0 20px;
+  position: relative;
+}
+@media (max-height: 800px) {
+  .lists {
+    max-height: 500px;
+  }
+}
+@media (min-width: 860px) {
+  .lists {
+    padding: 0 30px;
+  }
+}
+.lists .list {
+  border-radius: 3px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  transition: scale 1s ease;
+  margin: 5px;
+  position: relative;
+  color: #706233;
+  font-weight: bold;
+  letter-spacing: 1px;
+  background-color: #e1c78f;
+}
+.lists .list .span-btns {
+  position: absolute;
+  right: 0;
+  z-index: 9;
+}
+.lists .list .span-btns span {
+  cursor: pointer;
+
+  height: 25px;
+  width: 25px;
+  display: inline-block;
+  line-height: 25px;
+  margin-right: 5px;
+  border-radius: 50%;
+}
+
+.lists .list p {
+  margin-left: 10px;
+  text-transform: capitalize;
+  width: calc(100% - 100px);
+  text-align: left;
+}
+
+.lists::-webkit-scrollbar {
+  width: 2px;
+}
+
+.lists .completed {
+  position: relative;
+  background-color: #3a4d39;
+}
+.completed::after {
+  content: "";
+  position: absolute;
+  height: 2px;
+  width: 100%;
+  border-radius: 3px;
+
+  background: #3f3f3f;
+}
+.completed::before {
+  content: "COMPLETED";
+  position: absolute;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  letter-spacing: 0.3ch;
+  height: 100%;
+  border-radius: 3px;
+
+  z-index: 1;
+}
+
+@media (max-width: 390px) {
+  .addtask-btn {
+    font-size: 14px;
+    padding: 0 5px;
+  }
+}
+.span-btns {
+  font-size: 30px;
+  color: #706233;
+  font-weight: normal;
+}
+.span-btns span:hover {
+  opacity: 0.2;
+}
+/* .delete-btn {
+  color: red;
+} */
+.edit-btn {
+  font-size: 28px;
+}
+.delete-btn:hover {
+  opacity: 0.5;
+}
+.search {
+  max-width: 1000px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.search input {
+  flex: 1;
+
+  outline: none;
+  padding: 0.8rem 0.6rem;
+  border: 1px solid #e1c78f;
+  background: none;
+  border-radius: 10px;
+  font-size: 16px;
+  letter-spacing: 0.3ch;
+  box-shadow: -4px -4px 6px var(--shadow1), 4px 4px 10px var(--shadow2);
+  transition: border 0.4s ease;
+  color: red;
+}
+.addTask input {
+  color: red;
+}
