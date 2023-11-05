@@ -63,7 +63,7 @@ const Todolist = () => {
   const debouncedResults = useMemo(() => {
     return debouce(handleSearch, 500);
   }, []);
-  //////////////////////////////////////////////////////
+  /*////////////////////////////////////////////////////////////////*/
   axiosInstance.interceptors.request.use(
     (config) => {
       const token = localStorage.getItem("auth_token");
@@ -77,35 +77,27 @@ const Todolist = () => {
       Promise.reject(error);
     }
   );
-  ////////////////////////////////////////////////////////////////
+  /*////////////////////////////////////////////////////////////////*/
   axiosInstance.interceptors.response.use(
     (response) => {
-      // block to handle success case
       return response;
     },
     async function (error) {
-      // block to handle error case
       const originalRequest = error.config;
 
       if (
         error.response.status === 401 &&
-        originalRequest.url === "http://dummydomain.com/auth/token"
+        originalRequest.url === "http://localhost:3000/auth/token"
       ) {
-        // Added this condition to avoid infinite loop
-
-        // Redirect to any unauthorised route to avoid infinite loop...
         return Promise.reject(error);
       }
 
       if (error.response.status === 401 && !originalRequest._retry) {
-        // Code inside this block will refresh the auth token
-
         originalRequest._retry = true;
-        const refreshToken = "xxxxxxxxxx"; // Write the  logic  or call here the function which is having the login to refresh the token.
-        const res = await axiosInstance
-          .post("/auth/token", {
-            refresh_token: refreshToken,
-          });
+        const refreshToken = "xxxxxxxxxx";
+        const res = await axiosInstance.post("/auth/token", {
+          refresh_token: refreshToken,
+        });
         if (res.status === 201) {
           localStorage.setItem("auth_token", res.data);
           axiosInstance.defaults.headers.common["Authorization"] =
@@ -116,9 +108,8 @@ const Todolist = () => {
       return Promise.reject(error);
     }
   );
+  /*////////////////////////////////////////////////////////////////*/
 
-
-  
   return (
     <div className="todolist">
       <div className="search" onSubmit={addTask}>
